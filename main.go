@@ -36,7 +36,6 @@ func readDir(path string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	for _, file := range files {
 		filename := filepath.Join(path, file.Name())
 		if !file.IsDir() {
