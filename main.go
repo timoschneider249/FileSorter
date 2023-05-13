@@ -42,7 +42,7 @@ func readDir(path string) {
 			dat, err := os.ReadFile(filename)
 			checkErr(err)
 			fmt.Print(http.DetectContentType(dat) + " : ")
-			format := file.ModTime().Format("2006-02-01")
+			format := file.ModTime().Format("2006-01-02")
 			fileName := file.Name()
 			fmt.Println(fileName, format)
 			folderPath := filepath.Join(path, format)
