@@ -15,24 +15,29 @@ jobs:
     name: Lint files
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
         with:
-          go-version: '1.16.3'
+          go-version: '1.19'
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v2.5.2
         with:
           version: latest
-  test:
-    name: Run tests
+  build:
     runs-on: self-hosted
-    needs: lint
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
         with:
-          go-version: '1.16.3'
-      - run: go test -v -cover
+          go-version: 1.19
+
+      - name: Build
+        run: go build -v ./...
+
+      - name: Test
+        run: go test -v ./...
   release:
     name: Create Release
     runs-on: self-hosted
@@ -86,10 +91,10 @@ jobs:
           - 'windows/arm'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: actions/setup-go@v2
+      - uses: actions/setup-go@v3
         with:
           go-version: '1.16.3'
       - name: Get OS and arch info
