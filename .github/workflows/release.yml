@@ -23,7 +23,7 @@ jobs:
         uses: golangci/golangci-lint-action@v2.5.2
         with:
           version: latest
-  build:
+  test:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
