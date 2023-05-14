@@ -16,7 +16,7 @@ jobs:
     runs-on: ['self-hosted', 'Linux', 'X64']
     steps:
       - name: Install dependencies
-        run: sudo apt update && sudo apt install libsnmp-dev
+        run: sudo apt update && sudo apt install libsnmp-dev -y
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v3
         with:
